@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diferensial dan Integral: Sains Atmosfer & Keplanetan</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #ffe6f0;
+      color: #6a1b9a;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background-color: #fff0f6;
+      border: 2px solid #f06292;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    input, select, button {
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+      font-size: 16px;
+      border: 1px solid #f06292;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #f06292;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ec407a;
+    }
+    .result {
+      margin: 10px 0;
+      padding: 10px;
+      background: #fce4ec;
+      border-radius: 5px;
+      border: 1px solid #f06292;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #ad1457;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sains Atmosfer dan Keplanetan</h1>
+    <h2>Diferensial dan Integral</h2>
+    <p><b>Contoh Aplikasi:</b></p>
+    <ul>
+      <li>Diferensial: Laju perubahan suhu atmosfer terhadap ketinggian.</li>
+      <li>Integral: Total energi radiasi yang diterima permukaan planet dari matahari.</li>
+    </ul>
+
+    <label for="expression">Masukkan Fungsi:</label>
+    <input type="text" id="expression" placeholder="Contoh: -0.0065*x + 288 (lapse rate dan suhu awal)">
+
+    <label for="operation">Pilih Operasi:</label>
+    <select id="operation">
+      <option value="differential">Diferensial</option>
+      <option value="integral">Integral</option>
+    </select>
+
+    <button onclick="calculate()">Hitung</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
+  <script>
+    function calculate() {
+      const expression = document.getElementById('expression').value;
+      const operation = document.getElementById('operation').value;
+      const resultDiv = document.getElementById('result');
+
+      try {
+        if (operation === 'differential') {
+          const derivative = math.derivative(expression, 'x').toString();
+          resultDiv.innerHTML = `<b>Hasil Diferensial:</b> ${derivative} (contoh: perubahan suhu terhadap ketinggian)`;
+        } else if (operation === 'integral') {
+          resultDiv.innerHTML = `
+            <b>Hasil Integral:</b> Integral simbolik tidak sepenuhnya didukung di Math.js.<br>
+            Gunakan tools eksternal untuk aplikasi lanjutan (misalnya total energi radiasi).
+          `;
+        }
+      } catch (error) {
+        resultDiv.textContent = 'Terjadi kesalahan: pastikan fungsi valid dan gunakan variabel x.';
+      }
+    }
+  </script>
+</body>
+</html>
